@@ -14,8 +14,6 @@ import {
   ArrowLeft, 
   CheckCircle, 
   Mail, 
-  Phone, 
-  MapPin, 
   Users,
   Clock,
   Gift,
@@ -62,7 +60,7 @@ export default function WaitlistPage() {
       } else {
         setError(data.message || 'Something went wrong. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setError('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
@@ -79,7 +77,7 @@ export default function WaitlistPage() {
             </div>
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome to DoorBel!</h1>
             <p className="text-gray-600 mb-6">
-              Thank you for joining our waitlist! We'll notify you as soon as DoorBel is available in your area.
+              Thank you for joining our waitlist! We&apos;ll notify you as soon as DoorBel is available in your area.
             </p>
             <div className="space-y-4">
               <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
@@ -134,7 +132,7 @@ export default function WaitlistPage() {
               <span className="text-green-600"> DoorBel</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Join our exclusive waitlist and get early access to Ghana's most innovative delivery platform. 
+              Join our exclusive waitlist and get early access to Ghana&apos;s most innovative delivery platform. 
               Plus, enjoy early access benefits!
             </p>
           </div>
@@ -183,7 +181,7 @@ export default function WaitlistPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600 mb-4">
-                    Be part of Ghana's delivery revolution. Connect with other early adopters and help shape the future of logistics in our country.
+                    Be part of Ghana&apos;s delivery revolution. Connect with other early adopters and help shape the future of logistics in our country.
                   </p>
                   <div className="flex items-center space-x-4 text-sm text-gray-500">
                     <div className="flex items-center space-x-1">
@@ -351,7 +349,7 @@ export default function WaitlistPage() {
                         onCheckedChange={(checked) => handleInputChange('agreeToMarketing', checked as boolean)}
                       />
                       <Label htmlFor="agreeToMarketing" className="text-sm">
-                        I'd like to receive updates about DoorBel's launch and new features
+                        I&apos;d like to receive updates about DoorBel&apos;s launch and new features
                       </Label>
                     </div>
                   </div>

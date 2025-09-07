@@ -6,8 +6,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
-  LineChart, 
-  Line, 
   AreaChart, 
   Area, 
   BarChart, 
@@ -30,9 +28,6 @@ import {
   Send,
   Target,
   BarChart3,
-  Calendar,
-  Globe,
-  Smartphone,
   Truck,
   Rocket
 } from "lucide-react";
@@ -350,7 +345,7 @@ function MarketingCampaignForm() {
     targetStatus: [] as string[]
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<{ success?: boolean; message?: string; error?: string; stats?: { sent?: number; failed?: number; total?: number } } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -380,7 +375,7 @@ function MarketingCampaignForm() {
        } else {
          setResult(data);
        }
-     } catch (error) {
+     } catch {
        setResult({ error: 'Failed to send campaign' });
      } finally {
        setIsSubmitting(false);
@@ -494,7 +489,7 @@ function MarketingCampaignForm() {
 // Launch Management Form Component
 function LaunchManagementForm({ stats }: { stats: DashboardStats }) {
   const [isLaunching, setIsLaunching] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<{ success?: boolean; message?: string; error?: string; stats?: { sent?: number; failed?: number; total?: number } } | null>(null);
 
   const handleLaunch = async () => {
     setIsLaunching(true);
@@ -519,7 +514,7 @@ function LaunchManagementForm({ stats }: { stats: DashboardStats }) {
       } else {
         setResult(data);
       }
-    } catch (error) {
+    } catch {
       setResult({ error: 'Failed to send launch announcement' });
     } finally {
       setIsLaunching(false);
@@ -549,7 +544,7 @@ function LaunchManagementForm({ stats }: { stats: DashboardStats }) {
       } else {
         setResult(data);
       }
-    } catch (error) {
+    } catch {
       setResult({ error: 'Failed to send launch update' });
     } finally {
       setIsLaunching(false);
@@ -580,7 +575,7 @@ function LaunchManagementForm({ stats }: { stats: DashboardStats }) {
         // Refresh the page to update stats
         window.location.reload();
       }
-    } catch (error) {
+    } catch {
       setResult({ error: 'Failed to confirm users' });
     } finally {
       setIsLaunching(false);

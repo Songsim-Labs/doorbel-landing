@@ -113,7 +113,7 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
 
     // Build filter
-    const filter: any = {};
+    const filter: Record<string, unknown> = {};
     if (city) filter.city = city;
     if (role) filter.role = role;
     if (status) filter.status = status;

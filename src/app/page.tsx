@@ -61,12 +61,12 @@ export default function Home() {
                   🚀 Coming Soon - Join the Waitlist
                 </Badge>
                 <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  Ghana's Next-Gen
+                  Ghana&apos;s Next-Gen
                   <span className="text-green-600"> Delivery</span> 
                   <br />Platform is Coming
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Join the waitlist for Ghana's most innovative delivery platform. Connect with trusted riders, 
+                  Join the waitlist for Ghana&apos;s most innovative delivery platform. Connect with trusted riders, 
                   track deliveries in real-time, and pay securely with mobile money. Be the first to experience delivery redefined.
                 </p>
               </div>
@@ -150,7 +150,7 @@ export default function Home() {
               What Makes DoorBel Special?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're building the most comprehensive delivery platform in Ghana with features 
+              We&apos;re building the most comprehensive delivery platform in Ghana with features 
               designed specifically for our local market. Join the waitlist to be the first to experience it.
             </p>
           </div>
@@ -264,7 +264,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Rider Assigned</h3>
               <p className="text-gray-600">
-                We'll match you with the nearest available rider. Get notified when your rider is on the way.
+                We&apos;ll match you with the nearest available rider. Get notified when your rider is on the way.
               </p>
             </div>
 
@@ -276,7 +276,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Track & Deliver</h3>
               <p className="text-gray-600">
-                Track your package in real-time and get notified when it's delivered. Rate your experience.
+                Track your package in real-time and get notified when it&apos;s delivered. Rate your experience.
               </p>
             </div>
           </div>
@@ -291,7 +291,7 @@ export default function Home() {
               Why Join the Waitlist?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Be part of Ghana's delivery revolution. Join thousands of early adopters who are already excited about DoorBel.
+              Be part of Ghana&apos;s delivery revolution. Join thousands of early adopters who are already excited about DoorBel.
             </p>
           </div>
 
@@ -343,7 +343,7 @@ export default function Home() {
           </h2>
           <p className="text-xl text-green-100 mb-8">
             Join thousands of early adopters who are already excited about DoorBel. 
-            Be the first to experience Ghana's next-generation delivery platform.
+            Be the first to experience Ghana&apos;s next-generation delivery platform.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" className="bg-white text-green-600 hover:bg-gray-100 text-lg px-8 py-6" asChild>
@@ -378,7 +378,7 @@ export default function Home() {
                 <span className="text-xl font-bold">DoorBel</span>
               </div>
               <p className="text-gray-400">
-                Ghana's next-generation delivery platform coming soon. Join the waitlist to be the first to experience fast, secure, and reliable package delivery.
+                Ghana&apos;s next-generation delivery platform coming soon. Join the waitlist to be the first to experience fast, secure, and reliable package delivery.
               </p>
               <div className="flex space-x-4">
                 <Globe className="h-5 w-5 text-gray-400" />

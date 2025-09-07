@@ -107,11 +107,11 @@ export const sendWelcomeEmail = async (email: string, firstName: string, referra
     return { success: true, messageId: result.messageId };
   } catch (error) {
     console.error('Error sending welcome email:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
   }
 };
 
-export const sendAdminNotification = async (userData: any) => {
+export const sendAdminNotification = async (userData: Record<string, unknown>) => {
   try {
     const transporter = createTransporter();
 
@@ -135,6 +135,6 @@ export const sendAdminNotification = async (userData: any) => {
     return { success: true };
   } catch (error) {
     console.error('Error sending admin notification:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
   }
 };

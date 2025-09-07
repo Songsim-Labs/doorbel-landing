@@ -67,7 +67,7 @@ export const sendMarketingEmail = async (
     return { success: true, messageId: result.messageId };
   } catch (error) {
     console.error('Error sending marketing email:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
   }
 };
 
@@ -112,7 +112,7 @@ export const sendLaunchAnnouncement = async (
     return { success: true, messageId: result.messageId };
   } catch (error) {
     console.error('Error sending launch announcement:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
   }
 };
 
@@ -140,7 +140,7 @@ export const sendBulkMarketingEmail = async (
     } catch (error) {
       results.push({ 
         ...recipient, 
-        result: { success: false, error: error.message } 
+        result: { success: false, error: error instanceof Error ? error.message : 'Unknown error' } 
       });
     }
   }
@@ -168,7 +168,7 @@ export const sendBulkLaunchAnnouncement = async (
     } catch (error) {
       results.push({ 
         ...recipient, 
-        result: { success: false, error: error.message } 
+        result: { success: false, error: error instanceof Error ? error.message : 'Unknown error' } 
       });
     }
   }

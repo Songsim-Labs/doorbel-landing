@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -53,7 +53,7 @@ export default function AdminWaitlistPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
       const params = new URLSearchParams({
@@ -77,11 +77,11 @@ export default function AdminWaitlistPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, cityFilter, roleFilter, statusFilter]);
 
   useEffect(() => {
     fetchData();
-  }, [currentPage, cityFilter, roleFilter, statusFilter]);
+  }, [fetchData]);
 
   const filteredUsers = users.filter(user => 
     user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -116,7 +116,7 @@ export default function AdminWaitlistPage() {
   };
 
   const getCityStats = () => {
-    const cityCounts = stats.byCity.reduce((acc: any, city: string) => {
+    const cityCounts = stats.byCity.reduce((acc: Record<string, number>, city: string) => {
       acc[city] = (acc[city] || 0) + 1;
       return acc;
     }, {});
@@ -124,7 +124,7 @@ export default function AdminWaitlistPage() {
   };
 
   const getRoleStats = () => {
-    const roleCounts = stats.byRole.reduce((acc: any, role: string) => {
+    const roleCounts = stats.byRole.reduce((acc: Record<string, number>, role: string) => {
       acc[role] = (acc[role] || 0) + 1;
       return acc;
     }, {});

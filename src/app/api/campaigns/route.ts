@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     } = body;
 
     // Build filter based on target audience
-    const filter: any = {};
+    const filter: Record<string, unknown> = {};
     if (targetAudience.cities && targetAudience.cities.length > 0) {
       filter.city = { $in: targetAudience.cities };
     }
@@ -128,7 +128,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     await connectDB();
 
