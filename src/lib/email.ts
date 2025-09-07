@@ -88,7 +88,7 @@ export const sendWelcomeEmail = async (email: string, firstName: string, referra
               </div>
 
               <div style="text-align: center; margin: 30px 0;">
-                <a href="https://doorbel.com" class="button">Visit Our Website</a>
+                <a href="https://doorbel.org" class="button">Visit Our Website</a>
               </div>
             </div>
             

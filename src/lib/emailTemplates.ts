@@ -79,7 +79,7 @@ export const emailTemplates: EmailTemplate[] = [
             </div>
 
             <div style="text-align: center; margin: 30px 0;">
-              <a href="https://doorbel.com" class="button">Visit Our Website</a>
+              <a href="https://doorbel.org" class="button">Visit Our Website</a>
             </div>
           </div>
           
@@ -126,7 +126,7 @@ export const emailTemplates: EmailTemplate[] = [
             {{content}}
             
             <div style="text-align: center; margin: 30px 0;">
-              <a href="https://doorbel.com" class="button">Visit DoorBel</a>
+              <a href="https://doorbel.org" class="button">Visit DoorBel</a>
             </div>
           </div>
           
@@ -208,14 +208,14 @@ export const emailTemplates: EmailTemplate[] = [
             </ol>
 
             <div style="text-align: center; margin: 30px 0;">
-              <a href="https://doorbel.com" class="button">Visit Our Website</a>
+              <a href="https://doorbel.org" class="button">Visit Our Website</a>
             </div>
           </div>
           
           <div class="footer">
             <p>Thank you for being part of our journey!<br>The DoorBel Team</p>
             <p>🇬🇭 Ghana's #1 Delivery Platform</p>
-            <p><small>Questions? Reply to this email or contact support@doorbel.com</small></p>
+            <p><small>Questions? Reply to this email or contact support@doorbel.org</small></p>
           </div>
         </div>
       </body>
