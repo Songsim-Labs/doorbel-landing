@@ -37,6 +37,13 @@ interface DashboardStats {
   confirmed: number;
   launched: number;
   marketingOptIn: number;
+  byCity: string[];
+  byRole: string[];
+  byStatus: string[];
+}
+
+interface DashboardData {
+  stats: DashboardStats;
   recentSignups: Array<{ _id: string; count: number }>;
   cityStats: Array<{ _id: string; count: number; confirmed: number; launched: number }>;
   roleStats: Array<{ _id: string; count: number }>;
@@ -44,6 +51,7 @@ interface DashboardStats {
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -54,7 +62,8 @@ export default function AdminDashboard() {
     try {
       const response = await fetch('/api/campaigns');
       const data = await response.json();
-      setStats(data);
+      setDashboardData(data);
+      setStats(data.stats);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
     } finally {
@@ -88,22 +97,22 @@ export default function AdminDashboard() {
   }
 
   // Prepare chart data
-  const signupTrendData = stats.recentSignups.map(item => ({
+  const signupTrendData = dashboardData?.recentSignups.map(item => ({
     date: item._id,
     signups: item.count
-  }));
+  })) || [];
 
-  const cityChartData = stats.cityStats.map(item => ({
+  const cityChartData = dashboardData?.cityStats.map(item => ({
     name: item._id.charAt(0).toUpperCase() + item._id.slice(1),
     total: item.count,
     confirmed: item.confirmed,
     launched: item.launched
-  }));
+  })) || [];
 
-  const roleChartData = stats.roleStats.map(item => ({
+  const roleChartData = dashboardData?.roleStats.map(item => ({
     name: item._id.charAt(0).toUpperCase() + item._id.slice(1),
     value: item.count
-  }));
+  })) || [];
 
   const COLORS = ['#22c55e', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'];
 
@@ -124,7 +133,7 @@ export default function AdminDashboard() {
                 <Users className="h-8 w-8 text-blue-600" />
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Total Signups</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+                  <p className="text-2xl font-bold text-gray-900">{stats?.total || 0}</p>
                 </div>
               </div>
             </CardContent>
@@ -136,7 +145,7 @@ export default function AdminDashboard() {
                 <Mail className="h-8 w-8 text-green-600" />
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Confirmed</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.confirmed}</p>
+                  <p className="text-2xl font-bold text-gray-900">{stats?.confirmed || 0}</p>
                 </div>
               </div>
             </CardContent>
@@ -148,7 +157,7 @@ export default function AdminDashboard() {
                 <Truck className="h-8 w-8 text-purple-600" />
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Launched</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.launched}</p>
+                  <p className="text-2xl font-bold text-gray-900">{stats?.launched || 0}</p>
                 </div>
               </div>
             </CardContent>
@@ -160,7 +169,7 @@ export default function AdminDashboard() {
                 <Target className="h-8 w-8 text-orange-600" />
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Marketing Opt-in</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.marketingOptIn}</p>
+                  <p className="text-2xl font-bold text-gray-900">{stats?.marketingOptIn || 0}</p>
                 </div>
               </div>
             </CardContent>
