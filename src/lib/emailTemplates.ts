@@ -203,7 +203,7 @@ export const emailTemplates: EmailTemplate[] = [
             <ol>
               <li>Download the DoorBel app from your app store</li>
               <li>Sign in with the email you used for the waitlist</li>
-              <li>Your free credits and benefits will be automatically applied</li>
+              <li>Your early access benefits will be automatically applied</li>
               <li>Start sending or delivering packages right away!</li>
             </ol>
 

@@ -55,10 +55,6 @@ export const sendWelcomeEmail = async (email: string, firstName: string, referra
               <div class="benefits">
                 <h3>🎁 Your Early Access Benefits:</h3>
                 <div class="benefit-item">
-                  <span class="benefit-icon">💰</span>
-                  <span><strong>GHS 50 Free Credits</strong> - Use for your first deliveries</span>
-                </div>
-                <div class="benefit-item">
                   <span class="benefit-icon">⭐</span>
                   <span><strong>Priority Support</strong> - Dedicated early user support</span>
                 </div>
@@ -67,8 +63,8 @@ export const sendWelcomeEmail = async (email: string, firstName: string, referra
                   <span><strong>Exclusive Features</strong> - First access to new features</span>
                 </div>
                 <div class="benefit-item">
-                  <span class="benefit-icon">💸</span>
-                  <span><strong>Special Pricing</strong> - 50% off for first 3 months</span>
+                  <span class="benefit-icon">📱</span>
+                  <span><strong>Early Access</strong> - Be among the first to experience DoorBel</span>
                 </div>
               </div>
 
@@ -85,6 +81,11 @@ export const sendWelcomeEmail = async (email: string, firstName: string, referra
                 <li>Share your referral code to earn rewards when friends join</li>
                 <li>Follow us on social media for the latest news</li>
               </ul>
+
+              <div style="background: #f8fafc; border-left: 4px solid #22c55e; padding: 15px; margin: 20px 0;">
+                <h4 style="color: #166534; margin-top: 0;">🚚 For Riders</h4>
+                <p style="color: #166534; margin-bottom: 0;">Early riders will enjoy reduced commission fees for the first month after launch!</p>
+              </div>
 
               <div style="text-align: center; margin: 30px 0;">
                 <a href="https://doorbel.com" class="button">Visit Our Website</a>
