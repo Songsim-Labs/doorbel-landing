@@ -30,7 +30,7 @@ export default function Home() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
         <Image
-                src="/doorbel-logo.png"
+                src="/icon.png"
                 alt="DoorBel Logo"
                 width={60}
                 height={60}
