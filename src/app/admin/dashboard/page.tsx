@@ -38,6 +38,7 @@ import {
   AlertCircle,
   Activity
 } from "lucide-react";
+import adminApi from "@/lib/admin/admin-api";
 
 interface DashboardStats {
   total: number;
@@ -65,10 +66,23 @@ interface SystemMetrics {
   customerSatisfaction: number;
 }
 
+interface ActivityLogItem {
+  _id: string;
+  timestamp: string;
+  category: string;
+  eventType?: string;
+  action?: string;
+  status?: string;
+  message?: string;
+  userId?: string;
+}
+
 export default function AdminDashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [systemMetrics, setSystemMetrics] = useState<SystemMetrics | null>(null);
+  const [auxStats, setAuxStats] = useState<{ pendingOrders: number; failedTransactions: number } | null>(null);
+  const [recentActivity, setRecentActivity] = useState<ActivityLogItem[] | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -82,67 +96,53 @@ export default function AdminDashboard() {
       const waitlistData = await waitlistResponse.json();
       setDashboardData(waitlistData);
       setStats(waitlistData.stats);
+      // Fetch real system metrics from backend via admin API client
+      try {
+        const [orderStats, riderStats, paymentStats] = await Promise.all([
+          adminApi.getOrderStats(),
+          adminApi.getRiderStats(),
+          adminApi.getPaymentStats(),
+        ]);
 
-      // Fetch real system metrics from backend
-      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://doorbel-api.onrender.com';
-      const token = localStorage.getItem('adminToken');
-
-      if (token) {
-        try {
-          // Fetch order stats
-          const orderStatsResponse = await fetch(`${API_BASE_URL}/api/v1/admin/dashboard/order-stats`, {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            },
-          });
-
-          // Fetch rider stats
-          const riderStatsResponse = await fetch(`${API_BASE_URL}/api/v1/admin/dashboard/rider-stats`, {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            },
-          });
-
-          if (orderStatsResponse.ok && riderStatsResponse.ok) {
-            const orderStats = await orderStatsResponse.json();
-            const riderStats = await riderStatsResponse.json();
-
-            const realSystemMetrics: SystemMetrics = {
-              totalOrders: orderStats.data?.totalOrders || 0,
-              activeRiders: riderStats.data?.activeRiders || 0,
-              totalRevenue: orderStats.data?.totalRevenue || 0,
-              completionRate: orderStats.data?.completionRate || 0,
-              averageDeliveryTime: orderStats.data?.averageDeliveryTime || 0,
-              customerSatisfaction: riderStats.data?.averageRating || 0
-            };
-            setSystemMetrics(realSystemMetrics);
-          }
-        } catch (apiError) {
-          console.error('Error fetching backend data:', apiError);
-          // Fallback to mock data
-          const mockSystemMetrics: SystemMetrics = {
-            totalOrders: 1247,
-            activeRiders: 89,
-            totalRevenue: 45680,
-            completionRate: 94.2,
-            averageDeliveryTime: 28,
-            customerSatisfaction: 4.7
-          };
-          setSystemMetrics(mockSystemMetrics);
-        }
-      } else {
-        // No token, use mock data
-        const mockSystemMetrics: SystemMetrics = {
-          totalOrders: 1247,
-          activeRiders: 89,
-          totalRevenue: 45680,
-          completionRate: 94.2,
-          averageDeliveryTime: 28,
-          customerSatisfaction: 4.7
+        const realSystemMetrics: SystemMetrics = {
+          totalOrders: orderStats.totalOrders || 0,
+          activeRiders: riderStats.activeRiders || 0,
+          totalRevenue: orderStats.totalRevenue || 0,
+          completionRate: orderStats.completionRate || 0,
+          averageDeliveryTime: riderStats.averageDeliveryTime || 0,
+          customerSatisfaction: riderStats.averageRating || 0,
         };
-        setSystemMetrics(mockSystemMetrics);
+        setSystemMetrics(realSystemMetrics);
+
+        // Store auxiliary stats for UI cards
+        setAuxStats({
+          pendingOrders: orderStats.pendingOrders || 0,
+          failedTransactions: paymentStats.failedTransactions || 0,
+        });
+
+        // Fetch recent activity logs (behind feature flag until backend route exists)
+        if (process.env.NEXT_PUBLIC_ENABLE_ACTIVITY === 'true') {
+          try {
+            const activity = await adminApi.getRecentActivity(10);
+            setRecentActivity(activity);
+          } catch {
+            setRecentActivity([]);
+          }
+        } else {
+          setRecentActivity([]);
+        }
+      } catch (apiError) {
+        console.error('Error fetching backend data:', apiError);
+        setSystemMetrics({
+          totalOrders: 0,
+          activeRiders: 0,
+          totalRevenue: 0,
+          completionRate: 0,
+          averageDeliveryTime: 0,
+          customerSatisfaction: 0,
+        });
+        setAuxStats({ pendingOrders: 0, failedTransactions: 0 });
+        setRecentActivity([]);
       }
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
@@ -235,7 +235,7 @@ export default function AdminDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Pending Tasks</p>
-                <p className="text-2xl font-bold text-orange-600">12</p>
+                <p className="text-2xl font-bold text-orange-600">{auxStats?.pendingOrders || 0}</p>
               </div>
               <Clock className="h-8 w-8 text-orange-500" />
             </div>
@@ -247,7 +247,7 @@ export default function AdminDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Alerts</p>
-                <p className="text-2xl font-bold text-red-600">3</p>
+                <p className="text-2xl font-bold text-red-600">{auxStats?.failedTransactions || 0}</p>
               </div>
               <AlertCircle className="h-8 w-8 text-red-500" />
             </div>
@@ -376,32 +376,28 @@ export default function AdminDashboard() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">New order completed</p>
-                      <p className="text-xs text-gray-500">Order #1234 delivered in 25 minutes</p>
-                    </div>
-                    <span className="text-xs text-gray-400">2m ago</span>
+                {recentActivity && recentActivity.length > 0 ? (
+                  <div className="space-y-3">
+                    {recentActivity.map((log) => (
+                      <div key={log._id} className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium">
+                            {log.action || log.eventType || log.category}
+                          </p>
+                          <p className="text-xs text-gray-500 line-clamp-1">
+                            {log.message || log.status || ''}
+                          </p>
+                        </div>
+                        <span className="text-xs text-gray-400">
+                          {new Date(log.timestamp).toLocaleTimeString()}
+                        </span>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">New rider registered</p>
-                      <p className="text-xs text-gray-500">John Doe from Accra joined as rider</p>
-                    </div>
-                    <span className="text-xs text-gray-400">5m ago</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">Campaign sent</p>
-                      <p className="text-xs text-gray-500">Launch announcement sent to 150 users</p>
-                    </div>
-                    <span className="text-xs text-gray-400">1h ago</span>
-                  </div>
-                </div>
+                ) : (
+                  <div className="text-sm text-gray-500">No recent activity available.</div>
+                )}
               </CardContent>
             </Card>
 
@@ -427,8 +423,8 @@ export default function AdminDashboard() {
                     <span className="text-sm font-medium">{systemMetrics?.completionRate || 0}%</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Revenue Today</span>
-                    <span className="text-sm font-medium">₵2,340</span>
+                    <span className="text-sm text-gray-600">Total Revenue</span>
+                    <span className="text-sm font-medium">₵{systemMetrics?.totalRevenue?.toLocaleString() || 0}</span>
                   </div>
                 </div>
               </CardContent>

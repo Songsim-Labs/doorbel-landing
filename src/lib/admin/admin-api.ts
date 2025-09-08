@@ -65,6 +65,17 @@ interface PaymentStats {
   successRate: number;
 }
 
+interface ActivityLog {
+  _id: string;
+  timestamp: string;
+  category: string;
+  eventType?: string;
+  action?: string;
+  status?: string;
+  message?: string;
+  userId?: string;
+}
+
 class AdminApiService {
   private baseURL: string;
   private token: string | null = null;
@@ -155,6 +166,12 @@ class AdminApiService {
 
   async getPaymentStats(): Promise<PaymentStats> {
     const response = await this.request<PaymentStats>('/admin/dashboard/payment-stats');
+    return response.data;
+  }
+
+  // Activity / Logs
+  async getRecentActivity(limit: number = 10): Promise<ActivityLog[]> {
+    const response = await this.request<ActivityLog[]>(`/admin/dashboard/activity?limit=${limit}`);
     return response.data;
   }
 
