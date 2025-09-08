@@ -76,26 +76,17 @@ export default function WaitlistPage() {
 
   const fetchWaitlistUsers = async () => {
     try {
-      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://doorbel-api.onrender.com';
-      const token = localStorage.getItem('adminToken');
+      // Use internal Next.js API route
+      try {
+        const response = await fetch(`/api/waitlist`);
 
-      if (token) {
-        try {
-          const response = await fetch(`${API_BASE_URL}/api/v1/admin/waitlist`, {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            },
-          });
-
-          if (response.ok) {
-            const data = await response.json();
-            setUsers(data.data?.users || []);
-            return;
-          }
-        } catch (apiError) {
-          console.error('Error fetching waitlist users from backend:', apiError);
+        if (response.ok) {
+          const data = await response.json();
+          setUsers(data.users || []);
+          return;
         }
+      } catch (apiError) {
+        console.error('Error fetching waitlist users from Next.js API:', apiError);
       }
 
       // Fallback to mock data if API fails or no token

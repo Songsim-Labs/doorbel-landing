@@ -118,17 +118,6 @@ export default function AdminDashboard() {
               customerSatisfaction: riderStats.data?.averageRating || 0
             };
             setSystemMetrics(realSystemMetrics);
-          } else {
-            // Fallback to mock data if API fails
-            const mockSystemMetrics: SystemMetrics = {
-              totalOrders: 1247,
-              activeRiders: 89,
-              totalRevenue: 45680,
-              completionRate: 94.2,
-              averageDeliveryTime: 28,
-              customerSatisfaction: 4.7
-            };
-            setSystemMetrics(mockSystemMetrics);
           }
         } catch (apiError) {
           console.error('Error fetching backend data:', apiError);
