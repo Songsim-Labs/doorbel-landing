@@ -187,7 +187,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 9 */}
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">9. Children's Privacy</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">9. Children&apos;s Privacy</h2>
               <p>
                 DoorBel is not intended for use by children under 18 years of age. We do not knowingly collect personal information from children. If we become aware that we have collected information from a child under 18, we will take steps to delete such information promptly.
               </p>
@@ -210,7 +210,7 @@ export default function PrivacyPolicyPage() {
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>Posting the updated policy in the app</li>
                 <li>Sending you a notification</li>
-                <li>Updating the "Last updated" date</li>
+                <li>Updating the &ldquo;Last updated&rdquo; date</li>
               </ul>
               <p className="mt-4">
                 Your continued use of DoorBel after changes become effective constitutes acceptance of the updated policy.
