@@ -116,6 +116,7 @@ export default function TermsOfServicePage() {
           <div className="flex justify-center space-x-6 mt-4">
             <Link href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</Link>
+            <Link href="/delete-account" className="text-gray-400 hover:text-white text-sm transition-colors">Delete Account</Link>
           </div>
         </div>
       </footer>

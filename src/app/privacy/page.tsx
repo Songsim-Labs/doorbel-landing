@@ -169,7 +169,7 @@ export default function PrivacyPolicyPage() {
               <p>You can update your account information (name) directly in the app. For other changes, contact our support team.</p>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Deletion</h3>
-              <p>You can request deletion of your account and associated data by contacting support@doorbel.com. We will delete your data within 30 days, except where we are required to retain it for legal purposes.</p>
+              <p>You can request deletion of your account and associated data by visiting our <Link href="/delete-account" className="text-green-600 hover:underline font-medium">Account Deletion page</Link> or by contacting support@doorbel.com. We will process your deletion request within 30 days, except where we are required to retain certain data for legal purposes.</p>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Notification Preferences</h3>
               <p>You can manage your notification preferences in the app settings, including:</p>
@@ -285,6 +285,7 @@ export default function PrivacyPolicyPage() {
           <div className="flex justify-center space-x-6 mt-4">
             <Link href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</Link>
+            <Link href="/delete-account" className="text-gray-400 hover:text-white text-sm transition-colors">Delete Account</Link>
           </div>
         </div>
       </footer>
