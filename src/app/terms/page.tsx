@@ -360,10 +360,10 @@ export default function TermsOfServicePage() {
                 For questions about these Terms or any other inquiries, please contact us:
               </p>
               <div className="bg-gray-50 p-6 rounded-lg space-y-2">
-                <p><strong>Legal Email:</strong> legal@doorbel.com</p>
-                <p><strong>Support Email:</strong> support@doorbel.com</p>
-                <p><strong>Phone:</strong> +233 123 456 789</p>
-                <p><strong>Address:</strong> DoorBel Delivery Services, Accra, Ghana</p>
+                <p><strong>Legal Email:</strong> salimdadabajr@gmail.com</p>
+                <p><strong>Support Email:</strong> salimdadabajr@gmail.com</p>
+                <p><strong>Phone:</strong> +233 246 654 390</p>
+                <p><strong>Address:</strong> DoorBel Delivery Services, Tamale, Ghana</p>
               </div>
             </section>
           </div>

@@ -215,7 +215,7 @@ export const emailTemplates: EmailTemplate[] = [
           <div class="footer">
             <p>Thank you for being part of our journey!<br>The DoorBel Team</p>
             <p>🇬🇭 Ghana's #1 Delivery Platform</p>
-            <p><small>Questions? Reply to this email or contact support@doorbel.org</small></p>
+            <p><small>Questions? Reply to this email or contact salimdadabajr@gmail.com</small></p>
           </div>
         </div>
       </body>

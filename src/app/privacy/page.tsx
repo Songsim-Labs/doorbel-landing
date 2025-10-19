@@ -141,7 +141,7 @@ export default function PrivacyPolicyPage() {
               <p>You can update your account information (name) directly in the app. For other changes, contact our support team.</p>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Deletion</h3>
-              <p>You can request deletion of your account and associated data by contacting privacy@doorbel.com. We will delete your data within 30 days, except where we are required to retain it for legal purposes.</p>
+              <p>You can request deletion of your account and associated data by contacting salimdadabajr@gmail.com. We will delete your data within 30 days, except where we are required to retain it for legal purposes.</p>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Notification Preferences</h3>
               <p>You can manage your notification preferences in the app settings, including:</p>
@@ -224,10 +224,10 @@ export default function PrivacyPolicyPage() {
                 If you have questions, concerns, or requests regarding this privacy policy or our data practices, please contact us:
               </p>
               <div className="bg-gray-50 p-6 rounded-lg space-y-2">
-                <p><strong>Email:</strong> privacy@doorbel.com</p>
-                <p><strong>Support Email:</strong> support@doorbel.com</p>
-                <p><strong>Phone:</strong> +233 123 456 789</p>
-                <p><strong>Address:</strong> DoorBel Delivery Services, Accra, Ghana</p>
+                <p><strong>Email:</strong> salimdadabajr@gmail.com</p>
+                <p><strong>Support Email:</strong> salimdadabajr@gmail.com</p>
+                <p><strong>Phone:</strong> +233 246 654 390</p>
+                <p><strong>Address:</strong> DoorBel Delivery Services, Tamale, Ghana</p>
               </div>
             </section>
 
@@ -242,7 +242,7 @@ export default function PrivacyPolicyPage() {
 
           <div className="mt-12 pt-8 border-t border-gray-200">
             <p className="text-sm text-gray-600">
-              This privacy policy is effective as of January 2025. For previous versions or questions about changes, please contact privacy@doorbel.com.
+              This privacy policy is effective as of January 2025. For previous versions or questions about changes, please contact salimdadabajr@gmail.com.
             </p>
           </div>
         </div>
