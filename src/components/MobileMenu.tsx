@@ -43,6 +43,13 @@ export function MobileMenu() {
             >
               Benefits
             </a>
+            <Link 
+              href="/download-android"
+              className="block text-gray-600 hover:text-green-600 transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Download App
+            </Link>
             <Button className="w-full bg-green-600 hover:bg-green-700" asChild>
               <Link href="/waitlist">Join Waitlist</Link>
             </Button>

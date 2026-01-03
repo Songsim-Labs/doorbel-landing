@@ -42,6 +42,7 @@ export default function Home() {
               <a href="#features" className="text-gray-600 hover:text-green-600 transition-colors">Features</a>
               <a href="#how-it-works" className="text-gray-600 hover:text-green-600 transition-colors">How it Works</a>
               <a href="#benefits" className="text-gray-600 hover:text-green-600 transition-colors">Benefits</a>
+              <Link href="/download-android" className="text-gray-600 hover:text-green-600 transition-colors">Download App</Link>
               <Button className="bg-green-600 hover:bg-green-700" asChild>
                 <Link href="/waitlist">Get Started</Link>
               </Button>
@@ -79,8 +80,9 @@ export default function Home() {
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="border-green-200 text-green-700 hover:bg-green-50 text-lg px-8 py-6" asChild>
-                  <Link href="/waitlist">
-                    Become a Rider
+                  <Link href="/download-android">
+                    <Smartphone className="mr-2 h-5 w-5" />
+                    Download Android App
                   </Link>
                 </Button>
               </div>
@@ -348,14 +350,14 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" className="bg-white text-green-600 hover:bg-gray-100 text-lg px-8 py-6" asChild>
               <Link href="/waitlist">
-                <Smartphone className="mr-2 h-5 w-5" />
                 Join Waitlist
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-green-600 text-lg px-8 py-6" asChild>
-              <Link href="/waitlist">
-                <Zap className="mr-2 h-5 w-5" />
-                Start Delivering
+              <Link href="/download-android">
+                <Smartphone className="mr-2 h-5 w-5" />
+                Download Android App
               </Link>
             </Button>
           </div>
@@ -389,9 +391,9 @@ export default function Home() {
             <div>
               <h3 className="font-semibold mb-4">For Customers</h3>
               <ul className="space-y-2 text-gray-400">
+                <li><Link href="/download-android" className="hover:text-white transition-colors">Download App</Link></li>
                 <li><a href="#features" className="hover:text-white transition-colors">Send Package</a></li>
                 <li><a href="#how-it-works" className="hover:text-white transition-colors">Track Delivery</a></li>
-                <li><a href="#features" className="hover:text-white transition-colors">Pricing</a></li>
                 <li><a href="#benefits" className="hover:text-white transition-colors">Help Center</a></li>
               </ul>
             </div>
