@@ -16,7 +16,9 @@ import {
   ExternalLink
 } from "lucide-react";
 
-const APK_DOWNLOAD_LINK = "https://docs.google.com/uc?export=download&id=113qsDJqcXfpGYXRc0ME8WFxo-0beXiZ_";
+const APK_DOWNLOAD_LINK =
+  process.env.APK_DOWNLOAD_LINK ||
+  "https://docs.google.com/uc?export=download&id=18gLmlOO-iOdvAKrjUFgWu4XmDjyPBkFK";
 
 export default function DownloadAndroid() {
   return (
