@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DoorBel Admin - Delivery Platform Management",
-  description: "Admin dashboard for managing DoorBel delivery platform",
+  title: "DoorBel - Delivery Platform",
+  description: "Ghana's Next-Gen Delivery Platform",
 };
 
 export default function RootLayout({
